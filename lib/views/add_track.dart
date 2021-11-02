@@ -1,57 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lab_pe/models/patient.dart';
-import 'package:lab_pe/models/track.dart';
-import 'package:lab_pe/views/table_track.dart';
 
-class ViewPatient extends StatelessWidget {
-  var patient;
+class AddTrack extends StatelessWidget {
+  Patient patient;
 
-  ViewPatient({Key? key, this.patient}) : super(key: key);
+  AddTrack({Key? key, required this.patient}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(this.patient);
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Ver Paciente"),
+          title: const Text("Añadir Seguimiento"),
         ),
         body:new Column(
             children: <Widget>[
-              Text(""),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  initialValue: this.patient.firstName,
-                  decoration: InputDecoration(
-                    labelText: 'Nombre',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(
-                      Icons.account_circle,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  initialValue: this.patient.lastName,
-                  decoration: InputDecoration(
-                    labelText: 'Apellidos',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(
-                      Icons.person_outline,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  initialValue: this.patient.dateBirth,
+                  // initialValue: '',
                   keyboardType: TextInputType.datetime,
                   decoration: InputDecoration(
-                    labelText: 'Fecha de Nacimiento',
+                    labelText: 'Fecha',
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(
                       Icons.event,
@@ -62,13 +32,13 @@ class ViewPatient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  initialValue: this.patient.stature.toString(),
+                  // initialValue: '',
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: 'Estatura',
+                    labelText: 'Peso',
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(
-                      Icons.height,
+                      Icons.monitor_weight_outlined,
                     ),
                   ),
                 ),
@@ -76,13 +46,41 @@ class ViewPatient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  initialValue: this.patient.address,
-                  keyboardType: TextInputType.streetAddress,
+                  // initialValue: '',
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: 'Dirección',
+                    labelText: 'Temperatura',
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(
-                      Icons.home,
+                      Icons.thermostat_outlined,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  // initialValue: '',
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Saturación',
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(
+                      Icons.health_and_safety_outlined,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  // initialValue: '',
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Presión',
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(
+                      Icons.favorite_outlined,
                     ),
                   ),
                 ),
@@ -99,41 +97,9 @@ class ViewPatient extends StatelessWidget {
                   icon: Icon(Icons.save, size: 18),
                   label: Text("GUARDAR"),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 30), // double.infinity is the width and 30 is the height
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.map, size: 18),
-                  label: Text("VER MAPA"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 30), // double.infinity is the width and 30 is the height
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => new TableTrack(patient: patient)),
-                    );
-                    },
-                  icon: Icon(Icons.trending_up_outlined, size: 18),
-                  label: Text("VER SEGUIMIENTO"),
-                ),
-              ),
-
+              )
             ]
         )
     );
   }
-
 }
-

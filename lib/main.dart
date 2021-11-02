@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lab_pe/views/add_patient.dart';
 import 'package:lab_pe/views/view_patient.dart';
 import 'models/patient.dart';
+import 'models/track.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,19 +31,74 @@ class StatePatient extends StatelessWidget {
   Widget build(BuildContext context) {
     var patients = [];
     patients.add(new Patient(
-        'Summers', 'Scott', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172
+        'Summers', 'Scott', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+          new Track('2021-10-29', 70, 36, 50, 90),
+    ]
     ));
     patients.add(new Patient(
-        'Grey', 'Jean', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172
+        'Grey', 'Jean', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+    ]
     ));
     patients.add(new Patient(
-        'Worthington', 'Warren', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172
+        'Worthington', 'Warren', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+    ]
     ));
     patients.add(new Patient(
-        'McCoy', 'Henry', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172
+        'McCoy', 'Henry', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+    ]
     ));
     patients.add(new Patient(
-        'Drake', 'Robert', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172
+        'Drake', 'Robert', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+    ]
     ));
 
     var patient_items = <Widget>[];
