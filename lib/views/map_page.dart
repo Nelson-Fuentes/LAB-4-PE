@@ -41,7 +41,7 @@ class _MapPageState extends State<MapPage> {
     _markers[markerId] = marker;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Mapa" + widget.name),
+          title: Text("Mapa de " + widget.name),
         ),
         body: GoogleMap(
           markers: markers,
