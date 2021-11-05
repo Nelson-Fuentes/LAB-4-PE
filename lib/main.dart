@@ -8,19 +8,16 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: StatePatient()
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: StatePatient());
   }
 }
 
@@ -32,18 +29,17 @@ class StatePatient extends StatelessWidget {
     var patients = [];
     patients.add(new Patient(
         'Summers', 'Scott', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-          new Track('2021-10-29', 70, 36, 50, 90),
-    ]
-    ));
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+      new Track('2021-10-29', 70, 36, 50, 90),
+    ]));
     patients.add(new Patient(
         'Grey', 'Jean', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
       new Track('2021-10-29', 70, 36, 50, 90),
@@ -56,10 +52,9 @@ class StatePatient extends StatelessWidget {
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
-    ]
-    ));
-    patients.add(new Patient(
-        'Worthington', 'Warren', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
+    ]));
+    patients.add(new Patient('Worthington', 'Warren', '1963-09-26', 1.8,
+        'Mi casa', 1.2741, 103.8172, [
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
@@ -70,8 +65,7 @@ class StatePatient extends StatelessWidget {
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
-    ]
-    ));
+    ]));
     patients.add(new Patient(
         'McCoy', 'Henry', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
       new Track('2021-10-29', 70, 36, 50, 90),
@@ -84,8 +78,7 @@ class StatePatient extends StatelessWidget {
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
-    ]
-    ));
+    ]));
     patients.add(new Patient(
         'Drake', 'Robert', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
       new Track('2021-10-29', 70, 36, 50, 90),
@@ -98,28 +91,31 @@ class StatePatient extends StatelessWidget {
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
       new Track('2021-10-29', 70, 36, 50, 90),
-    ]
-    ));
+    ]));
 
     var patient_items = <Widget>[];
 
     patients.forEach((patient) {
       patient_items.add(ListTile(
-        leading: Icon(Icons.accessibility_rounded),
-        title: Text(patient.firstName + ' ' + patient.lastName),
-        subtitle: Text(patient.dateBirth + " | " + patient.stature.toString() + " | " + patient.address),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => new ViewPatient(patient: patient)),
-          );
-        }
-      ));
+          leading: Icon(Icons.accessibility_rounded),
+          title: Text(patient.firstName + ' ' + patient.lastName),
+          subtitle: Text(patient.dateBirth +
+              " | " +
+              patient.stature.toString() +
+              " | " +
+              patient.address),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => new ViewPatient(patient: patient)),
+            );
+          }));
     });
 
     return Scaffold(
       // appBar: AppBar(
-        //title: const Text('Lista de Pacientes'),
+      //title: const Text('Lista de Pacientes'),
       //),
       body: Scaffold(
         appBar: AppBar(
