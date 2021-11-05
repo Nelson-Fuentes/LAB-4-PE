@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unsa.epis.pe.lab_pe">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="lab_pe"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBHySmkR_Y1Evpd1F_0XG-6d_phLEDm76w"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
