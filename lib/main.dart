@@ -14,7 +14,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,126 +26,70 @@ class MyApp extends StatelessWidget {
 }
 
 class StatePatient extends StatelessWidget {
-  const StatePatient({Key? key}) : super(key: key);
-
-  void getPatients() async {
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection("patients");
-    QuerySnapshot patients = await collectionReference.get();
-    if (patients.docs.length != 0) {
-      for (var doc in patients.docs) {
-        print(doc.data());
-      }
-    }
-  }
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('patients').snapshots();
 
   @override
   Widget build(BuildContext context) {
-    var patients = [];
-    getPatients();
-    patients.add(new Patient(
-        'Summers', 'Scott', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-    ]));
-    patients.add(new Patient(
-        'Grey', 'Jean', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-    ]));
-    patients.add(new Patient('Worthington', 'Warren', '1963-09-26', 1.8,
-        'Mi casa', 1.2741, 103.8172, [
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-    ]));
-    patients.add(new Patient(
-        'McCoy', 'Henry', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-    ]));
-    patients.add(new Patient(
-        'Drake', 'Robert', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-      new Track('2021-10-29', 70, 36, 50, 90),
-    ]));
-
-    var patient_items = <Widget>[];
-
-    patients.forEach((patient) {
-      patient_items.add(ListTile(
-          leading: Icon(Icons.accessibility_rounded),
-          title: Text(patient.firstName + ' ' + patient.lastName),
-          subtitle: Text(patient.dateBirth +
-              " | " +
-              patient.stature.toString() +
-              " | " +
-              patient.address),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => new ViewPatient(patient: patient)),
-            );
-          }));
-    });
-
     return Scaffold(
-      // appBar: AppBar(
-      //title: const Text('Lista de Pacientes'),
-      //),
       body: Scaffold(
         appBar: AppBar(
           title: const Text('Listado de Pacientes'),
         ),
-        body: ListView(
-          children: patient_items,
+        body: StreamBuilder<QuerySnapshot>(
+          stream: _usersStream,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                var aux_patient = new Patient(
+                    document.id,
+                    data["last_name"],
+                    data["first_name"],
+                    data["date_birth"],
+                    data["stature"],
+                    data["address"],
+                    data["latitude"],
+                    data["longitude"], []);
+
+                return ListTile(
+                  leading: Icon(Icons.accessibility_rounded),
+                  title:
+                      Text(aux_patient.firstName + ' ' + aux_patient.lastName),
+                  subtitle: Text(aux_patient.dateBirth +
+                      " | " +
+                      aux_patient.stature.toString() +
+                      " | " +
+                      aux_patient.address),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ViewPatient(patient: aux_patient)),
+                    );
+                  },
+                );
+              }).toList(),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddPatient()),
+            MaterialPageRoute(builder: (context) => AddPatient()),
           );
         },
         child: const Icon(Icons.add),

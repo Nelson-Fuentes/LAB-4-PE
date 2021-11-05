@@ -4,15 +4,71 @@ import 'package:lab_pe/models/patient.dart';
 import 'package:lab_pe/models/track.dart';
 import 'package:lab_pe/views/table_track.dart';
 import 'package:lab_pe/views/map_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ViewPatient extends StatelessWidget {
   var patient;
+  String nombre = "", apellidos = "", direccion = "", fecha = "";
+  num estatura = 0.0, latitud = 0.0, longitud = 0.0;
+
+  getnombre(nombre_) {
+    this.nombre = nombre_;
+  }
+
+  getapellidos(apellidos_) {
+    this.apellidos = apellidos_;
+  }
+
+  getfecha(fecha_) {
+    this.fecha = fecha_;
+  }
+
+  getdireccion(direccion_) {
+    this.direccion = direccion_;
+  }
+
+  getestatura(estatura_) {
+    this.estatura = double.parse(estatura_);
+  }
+
+  getlatitud(latitud_) {
+    this.latitud = double.parse(latitud_);
+  }
+
+  getlongitud(longitud_) {
+    this.longitud = double.parse(longitud_);
+  }
+
+  savePat() async {
+    Map<String, dynamic> pat = {
+      "address": this.direccion,
+      "date_birth": this.fecha,
+      "first_name": this.nombre,
+      "last_name": this.apellidos,
+      "latitude": this.latitud,
+      "longitude": this.longitud,
+      "stature": this.estatura
+    };
+
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("patients").doc(this.patient.id);
+    documentReference.set(pat).whenComplete(() {
+      print("actualizado");
+    });
+  }
 
   ViewPatient({Key? key, this.patient}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(this.patient);
+    this.nombre = this.patient.firstName;
+    this.apellidos = this.patient.lastName;
+    this.fecha = this.patient.dateBirth;
+    this.estatura = this.patient.stature;
+    this.direccion = this.patient.address;
+    this.latitud = this.patient.latitude;
+    this.longitud = this.patient.longitude;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Ver Paciente"),
@@ -30,6 +86,9 @@ class ViewPatient extends StatelessWidget {
                   Icons.account_circle,
                 ),
               ),
+              onChanged: (String nombre) {
+                getnombre(nombre);
+              },
             ),
           ),
           Padding(
@@ -43,6 +102,9 @@ class ViewPatient extends StatelessWidget {
                   Icons.person_outline,
                 ),
               ),
+              onChanged: (String apellidos) {
+                getapellidos(apellidos);
+              },
             ),
           ),
           Padding(
@@ -57,6 +119,9 @@ class ViewPatient extends StatelessWidget {
                   Icons.event,
                 ),
               ),
+              onChanged: (String fecha) {
+                getfecha(fecha);
+              },
             ),
           ),
           Padding(
@@ -71,6 +136,9 @@ class ViewPatient extends StatelessWidget {
                   Icons.height,
                 ),
               ),
+              onChanged: (String estatura) {
+                getestatura(estatura);
+              },
             ),
           ),
           Padding(
@@ -85,6 +153,43 @@ class ViewPatient extends StatelessWidget {
                   Icons.home,
                 ),
               ),
+              onChanged: (String direccion) {
+                getdireccion(direccion);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              initialValue: this.patient.latitude.toString(),
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'latitud',
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(
+                  Icons.home,
+                ),
+              ),
+              onChanged: (String latitud) {
+                getlatitud(latitud);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              initialValue: this.patient.longitude.toString(),
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'longitude',
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(
+                  Icons.home,
+                ),
+              ),
+              onChanged: (String latitud) {
+                getlatitud(latitud);
+              },
             ),
           ),
           Padding(
@@ -95,6 +200,7 @@ class ViewPatient extends StatelessWidget {
                     30), // double.infinity is the width and 30 is the height
               ),
               onPressed: () {
+                savePat();
                 Navigator.pop(context);
               },
               icon: Icon(Icons.save, size: 18),
