@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lab_pe/views/add_patient.dart';
 import 'package:lab_pe/views/view_patient.dart';
@@ -5,7 +7,10 @@ import 'models/patient.dart';
 import 'models/track.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp().then((value) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -24,9 +29,21 @@ class MyApp extends StatelessWidget {
 class StatePatient extends StatelessWidget {
   const StatePatient({Key? key}) : super(key: key);
 
+  void getPatients() async {
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection("patients");
+    QuerySnapshot patients = await collectionReference.get();
+    if (patients.docs.length != 0) {
+      for (var doc in patients.docs) {
+        print(doc.data());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var patients = [];
+    getPatients();
     patients.add(new Patient(
         'Summers', 'Scott', '1963-09-26', 1.8, 'Mi casa', 1.2741, 103.8172, [
       new Track('2021-10-29', 70, 36, 50, 90),
